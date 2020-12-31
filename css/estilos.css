@@ -1,3 +1,5 @@
+/* parei no minuto 23:30 */
+
 /* soft reset */
 
 * {
@@ -53,6 +55,7 @@ header {
   position: fixed;
   width: 100vw;
   top: 0;
+  z-index: 1;
 }
 
 .menu ul {
@@ -67,15 +70,40 @@ header {
 .menu a {
   display: block;
   padding: 10px 20px;
+  transition: background-color 3s, color 2s; 
+}
+
+.menu a:active
+.menu a:hover {
+  background-color: teal;
+  color: white;
+
 }
 
 a {
   color: teal;
-  text-decoration: none;
+  text-decoration: none; /* tira o sublinhado do texto */
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+.titulo {
+  transform: scale(0.2) translateY(50vh);
+  opacity: 0;
+  animation: 1s ease 2s animacaoTitulo forwards;
+}
+
+@keyframes animacaoTitulo {
+  from {
+    transform: scale(0.2) translateY(50vh);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
 }
 
 .site-subtitle, 
@@ -91,21 +119,46 @@ a:hover {
 }
 
 .site-subtitle {
- font-style: italic;
+font-style: italic;
  font-family: 'Roboto', sans-serif;
  line-height: 1.8em;
 }
 
+.sobre,
+.contato,
 .portifolio {
   padding: 2em;
-  height: 100vh;
+  min-height: 100vh;
 }
 
+@media (min-width: 1200px){
+
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+  }
+
+}
+
+.sobre h2,
+.contato h2, 
 .portifolio h2 {
   font-family: 'Roboto', sans-serif;
   color: whitesmoke;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
   font-size: 2em;
+}
+
+.sobre p {
+  color: white;
+  text-indent: 1.4em;
+  margin-bottom: 1.4em;
+  text-align: justify;
+}
+
+.sobre a {
+  color: cyan;
 }
 
 .portifolio .grid {
@@ -118,6 +171,17 @@ a:hover {
   .portifolio .grid {
     grid-template-columns: 240px 240px;
   }
+
+  .contato a {
+    color: whitesmoke;
+    font-size: 1em;   
+  }
+
+  .contato a:hover {
+    text-decoration: none;
+    text-shadow: 0px 0px 10px rgba(255,255,255,.5);
+  }
+
   
 }
 
@@ -129,9 +193,16 @@ a:hover {
     height: calc(100vh -4em -48px -1.5em);
   }
 
-  .portifolio h2 {
-    text-align: center;  
+  .contato a {
+    color: whitesmoke;
+    font-size: 3em;   
   }
+
+  .contato a:hover {
+    text-decoration: none;
+    text-shadow: 0px 0px 10px rgba(255,255,255,.5);
+  }
+
   
 }
 
@@ -146,10 +217,42 @@ a:hover {
   object-fit: cover; /* cobre a proporção da img definida*/
   object-position: left bottom; /* alinha a img dentro do container */
   border-radius: 10px;
+  transition: transform 1s;
+
 }
+
+.img-portfolio:hover {
+  transform: scale(1.2);
+}
+
+
 
 @media (min-width: 1200px){
   .img-portfolio  {
     height: 10em;
     width: 100%;
+  }
+}
+
+  .contato a {
+    color: whitesmoke;
+    font-size: 3em;  
+    transition: text-shadow 1s; 
+  }
+
+  .contato a:active,
+  .contato a:hover {
+    text-decoration: none;
+    text-shadow: 0px 0px 10px rgba(255,255,255,.5);
+  }
+
+  .contato .icons {
+    text-align: center;
+  }
+
+ .avatar img {
+    border-radius: 50%;
+    height: 180px;
+    width: 240px;
+
   }
