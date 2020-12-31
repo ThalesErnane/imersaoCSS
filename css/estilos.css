@@ -1,7 +1,4 @@
-/* parei no minuto 23:30 */
-
-/* soft reset */
-
+/* soft reset do css */
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +6,7 @@
 }
 
 body {
-  background-image: url('/img/fundo.jpg');
+  background-image: url('../img/fundo.jpg');
   background-size: auto 100vh; 
   font-family: 'Source Code Pro', monospace;
   height: 100vh;
@@ -18,33 +15,29 @@ body {
 
 /* se a tela tiver pelo menos 400px vai carregar estes estilos */
 @media (min-width: 400px) {
-
   body {
     font-size: 14px;
   }
-
 }
 
 /* breakpoint */
 @media (min-width: 600px) {
-
   body {
+
     font-size: 18px;
   }
-
 }
 
 /* breakpoint */
 @media (min-width: 1200px) {
-
   body {
+   
     font-size: 20px;
   }
-
 }
 
 header {
-  height: 100vh;  
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,7 +48,7 @@ header {
   position: fixed;
   width: 100vw;
   top: 0;
-  z-index: 1;
+  z-index: 1; /* faz com q o menu fica a cima de qualquer elemento da tela */
 }
 
 .menu ul {
@@ -70,14 +63,13 @@ header {
 .menu a {
   display: block;
   padding: 10px 20px;
-  transition: background-color 3s, color 2s; 
+  transition: background-color 1s, color 1s;
 }
 
-.menu a:active
+.menu a:active,
 .menu a:hover {
   background-color: teal;
   color: white;
-
 }
 
 a {
@@ -92,7 +84,7 @@ a:hover {
 .titulo {
   transform: scale(0.2) translateY(50vh);
   opacity: 0;
-  animation: 1s ease 2s animacaoTitulo forwards;
+  animation: 1s ease 500ms animacaoTitulo forwards;
 }
 
 @keyframes animacaoTitulo {
@@ -110,41 +102,38 @@ a:hover {
 .site-title {
   color: whitesmoke;
   text-align: center;
-
 }
 
 .site-title {
   font-size: 4em;
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Gloria Hallelujah', cursive;
 }
 
 .site-subtitle {
-font-style: italic;
- font-family: 'Roboto', sans-serif;
+ font-style: italic;
+ font-family: 'Press Start 2P', cursive;
  line-height: 1.8em;
 }
 
 .sobre,
 .contato,
-.portifolio {
+.portfolio {
   padding: 2em;
   min-height: 100vh;
 }
 
-@media (min-width: 1200px){
-
+@media (min-width: 1200px) {
   .container {
     margin-left: auto;
     margin-right: auto;
     max-width: 1200px;
   }
-
 }
 
 .sobre h2,
-.contato h2, 
-.portifolio h2 {
-  font-family: 'Roboto', sans-serif;
+.contato h2,
+.portfolio h2 {
+  font-family: 'Press Start 2P', cursive;
   color: whitesmoke;
   margin-bottom: 1.5em;
   font-size: 2em;
@@ -158,101 +147,113 @@ font-style: italic;
 }
 
 .sobre a {
-  color: cyan;
+  color: white;
+  text-decoration: underline;
 }
 
-.portifolio .grid {
+.sobre a:hover {
+  background-color: cyan;
+  text-decoration: none;
+  color: magenta;
+}
+
+.sobre .avatar {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  margin-left: 2em;
+}
+
+@media (min-width: 600px) {
+  .sobre .avatar {
+    clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+    float: right;
+  }
+}
+
+
+.portfolio .grid {
   display: grid;
   gap: 2em;
-
 }
 
-@media (min-width: 560px){
-  .portifolio .grid {
+@media (min-width: 560px) {
+  .portfolio .grid {
     grid-template-columns: 240px 240px;
   }
-
-  .contato a {
-    color: whitesmoke;
-    font-size: 1em;   
-  }
-
-  .contato a:hover {
-    text-decoration: none;
-    text-shadow: 0px 0px 10px rgba(255,255,255,.5);
-  }
-
-  
 }
 
-@media (min-width: 880px){
-  .portifolio .grid {
-    grid-template-columns: repeat(3,260px);
+@media (min-width: 880px) {
+  .portfolio .grid {
+    grid-template-columns: repeat(3, 260px);
     align-content: center;
     justify-content: center;
-    height: calc(100vh -4em -48px -1.5em);
+    height: calc(100vh - 8em - 48px);
   }
-
-  .contato a {
-    color: whitesmoke;
-    font-size: 3em;   
-  }
-
-  .contato a:hover {
-    text-decoration: none;
-    text-shadow: 0px 0px 10px rgba(255,255,255,.5);
-  }
-
-  
 }
 
-.portifolio figure {
+.flip-card {
+  height: 180px;
+  perspective: 1000px;
+}
+
+.flip-card:hover .card {
+  transform: rotateY(180deg); /* quando der hover na div clip-card a div de dentro ira rotacionar */
+}
+
+.card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 3s;
+}
+
+.card-front, 
+.card-back {
+  backface-visibility: hidden;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.card-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, .7);
+  height: 180px;
+  width: 100%;
+  transform: rotateY(180deg);
+  border-radius: 10px;
+}
+
+.portfolio figure {
   text-align: center;
 }
 
-
 .img-portfolio {
   height: 180px;
-  width: 240px;
+  width: 100%;
   object-fit: cover; /* cobre a proporção da img definida*/
   object-position: left bottom; /* alinha a img dentro do container */
+  transition: transform 500ms;
   border-radius: 10px;
-  transition: transform 1s;
-
 }
 
-.img-portfolio:hover {
-  transform: scale(1.2);
+/* .img-portfolio:hover {
+  transform: scale(1.2) rotate(-2deg);
+} */
+
+.contato .icons {
+  text-align: center;
 }
 
-
-
-@media (min-width: 1200px){
-  .img-portfolio  {
-    height: 10em;
-    width: 100%;
-  }
+.contato a {
+  color: whitesmoke;
+  font-size: 4em;
+  transition: text-shadow 1s;
 }
 
-  .contato a {
-    color: whitesmoke;
-    font-size: 3em;  
-    transition: text-shadow 1s; 
-  }
-
-  .contato a:active,
-  .contato a:hover {
-    text-decoration: none;
-    text-shadow: 0px 0px 10px rgba(255,255,255,.5);
-  }
-
-  .contato .icons {
-    text-align: center;
-  }
-
- .avatar img {
-    border-radius: 50%;
-    height: 180px;
-    width: 240px;
-
-  }
+.contato a:active,
+.contato a:hover  {
+  text-decoration: none;
+  text-shadow: 0px 0px 10px rgba(255,255,255,.5);
+}
